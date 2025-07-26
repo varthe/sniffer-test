@@ -23,7 +23,7 @@ var (
 )
 
 func init() {
-	file, err := os.OpenFile("/logs/sniffer.csv", os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0o644)
+	file, err := os.OpenFile("/app/sniffer.csv", os.O_CREATE|os.O_APPEND|os.O_WRONLY, 0o644)
 	if err != nil {
 		panic(err)
 	}
