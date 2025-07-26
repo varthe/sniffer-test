@@ -7,6 +7,7 @@ import (
 	"net/http/httputil"
 	"net/url"
 	"os"
+	"path"
 	"sniffer/internal/logger"
 	"time"
 )
@@ -44,8 +45,11 @@ func newProxy(target *url.URL) *httputil.ReverseProxy {
 }
 
 func ping(u *url.URL) error {
+	v := *u
+	v.Path = path.Join(v.Path, "web/index.html")
+
 	c := &http.Client{Timeout: 10 * time.Second}
-	r, err := c.Get(u.String())
+	r, err := c.Get(v.String())
 	if err != nil {
 		return err
 	}
